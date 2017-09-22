@@ -21020,7 +21020,7 @@ module.exports = ReactMount.renderSubtreeIntoContainer;
 
 class SeatPlan extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.PureComponent {
   render() {
-    const { filed1, field2 } = this.props;
+    const { filed1 } = this.props;
     return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
       'div',
       null,
