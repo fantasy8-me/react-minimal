@@ -2,6 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = {
   entry: './src/index.jsx',
@@ -12,7 +13,6 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.json', '.jsx'],
   },
-  devServer: {},
   module: {
     rules: [
       {
@@ -21,7 +21,7 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['react', 'stage-2'],
+            presets: [['es2015', { modules: false }], 'react', 'stage-2'],
           },
         },
       },
@@ -40,6 +40,7 @@ module.exports = {
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': '"production"',
     }),
+    new UglifyJSPlugin(),
     new HtmlWebpackPlugin({
       template: './public/index.html',
     }),
