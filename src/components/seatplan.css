@@ -1,0 +1,19 @@
+#roomArea {
+  margin: 10px 100px 0px 100px;
+  background-color: lightgrey;
+  height: 500px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+#roomArea .seat {
+  width: 100px;
+  height: 30px;
+  padding: 15px;
+  margin: 20px;
+  color: white;
+  font-weight: bold;
+  background-color: tomato;
+  line-height: 30px;
+  text-align: center;
+}
