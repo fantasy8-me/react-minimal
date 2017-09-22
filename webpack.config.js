@@ -1,10 +1,14 @@
 const path = require('path');
+const webpack = require('webpack');
 
 module.exports = {
   entry: './src/index.jsx',
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist'),
+  },
+  resolve: {
+    extensions: ['.js', '.json', '.jsx'],
   },
   module: {
     rules: [
@@ -20,4 +24,9 @@ module.exports = {
       },
     ],
   },
+  plugins: [
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': '"production"',
+    }),
+  ],
 };
