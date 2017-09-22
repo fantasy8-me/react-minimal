@@ -12,6 +12,7 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.json', '.jsx'],
   },
+  devServer: {},
   module: {
     rules: [
       {
@@ -24,6 +25,10 @@ module.exports = {
           },
         },
       },
+      {
+        test: /\.(png|svg|jpg|gif)$/,
+        use: ['file-loader'],
+      },
     ],
   },
   plugins: [
@@ -32,7 +37,7 @@ module.exports = {
       'process.env.NODE_ENV': '"production"',
     }),
     new HtmlWebpackPlugin({
-      template: './src/index.html',
+      template: './public/index.html',
     }),
   ],
 };
