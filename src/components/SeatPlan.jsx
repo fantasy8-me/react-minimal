@@ -8,7 +8,7 @@ export default class SeatPlan extends React.PureComponent {
     numOfSeat: propTypes.number,
   };
   static defaultProps = {
-    numOfSeat: 30,
+    numOfSeat: 20,
   };
   render() {
     const { numOfSeat } = this.props;
@@ -16,6 +16,7 @@ export default class SeatPlan extends React.PureComponent {
     return (
       <div>
         <img src={logo} alt="" srcSet="" width={80} />
+        {this.state.count}
         <div id="roomArea">
           {[...new Array(numOfSeat)].map((i, count) => <div className="seat">{count}</div>)}
         </div>

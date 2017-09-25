@@ -1,14 +1,11 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = {
-  entry: [
-    'react-hot-loader/patch',
-    'webpack-dev-server/client?http://localhost:8080',
-    'webpack/hot/only-dev-server',
-    './src/index.jsx',
-  ],
+  entry: ['./src/index.jsx'],
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist'),
@@ -16,21 +13,15 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.json', '.jsx'],
   },
-  devServer: {
-    hot: true,
-  },
   module: {
     rules: [
       {
         test: /\.jsx?$/,
         exclude: /(node_modules|bower_components)/,
-        // to avoid "Unexpected token: name (urlParts)"https://github.com/webpack/webpack-dev-server/issues/1101
-        // exclude: /(node_modules(?!\/webpack-dev-server)|bower_components)/,
         use: {
           loader: 'babel-loader',
           options: {
             presets: [['es2015', { modules: false }], 'react', 'stage-2'],
-            plugins: ['react-hot-loader/babel'],
           },
         },
       },
@@ -45,7 +36,11 @@ module.exports = {
     ],
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin(),
+    new CleanWebpackPlugin(['dist']),
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': '"production"',
+    }),
+    new UglifyJSPlugin(),
     new HtmlWebpackPlugin({
       template: './public/index.html',
     }),
