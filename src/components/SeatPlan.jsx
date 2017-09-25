@@ -16,7 +16,6 @@ export default class SeatPlan extends React.PureComponent {
     return (
       <div>
         <img src={logo} alt="" srcSet="" width={80} />
-        {this.state.count}
         <div id="roomArea">
           {[...new Array(numOfSeat)].map((i, count) => <div className="seat">{count}</div>)}
         </div>
